@@ -5,6 +5,9 @@ TFWebSock is freely available under the Apache License 2.0
 ## Dependencies
 [transficc-client-library](https://github.com/TransFICC/client-library), [transficc-sample-java-client](https://github.com/TransFICC/sample-java-client), Netty 4.0.24, Gson 2.7, Guava 18.0
 
+## Build
+Ensure you have TransFICC's client-library and sample-java-client in siblig directories to tfwebsock, then `gradlew build`
+
 ## Acknowledgements
 TFWebSock used John Boardman's excellent [khs-stockticker](https://github.com/jwboardman/khs-stockticker) as boilerplate. Thanks John!
 

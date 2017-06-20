@@ -1,0 +1,21 @@
+/*
+ * Copyright (C) SpreadServe Ltd 2017
+ */
+apply plugin: 'java'
+
+defaultTasks 'build'
+
+repositories {
+    jcenter( )
+    mavenCentral( )
+}
+
+dependencies {
+    compile files("$rootDir/../sample-java-client/build/libs/transficc-sample-java-client.jar")
+    compile files("$rootDir/../client-library/build/libs/transficc-client-library-SNAPSHOT.jar")
+    compile 'io.netty:netty-all:4.0.24.Final'
+    compile 'org.slf4j:slf4j-simple:1.7.21'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.google.guava:guava:18.0'    
+    runtime 'org.agrona:agrona:0.9.3'
+}
