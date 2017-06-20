@@ -1,0 +1,19 @@
+# SocketServer port & host
+SocketServerPort:8890
+
+# logons
+TransficcUserId=
+TransficcPassword=
+
+LiquidityEdgeTradingUserId=
+LiquidityEdgeTradingPassword=
+
+LiquidityEdgeMarketDataUserId=
+LiquidityEdgeMarketDataPassword=
+
+IswapUserId=
+IswapPassword=
+
+# Venue InstructionIds for mapping to session IDs
+LiquidityEdgeInstructionId=LE md ins id
+IswapInstructionId=iswap ins id
