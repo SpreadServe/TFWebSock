@@ -1,21 +1,22 @@
 package com.spreadserve.tfwebsock;
 
+import java.io.StringReader;
+import java.util.HashMap;
+import io.netty.channel.Channel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-
-import java.io.StringReader;
-// import java.nio.channels.Channel;
-import io.netty.channel.Channel;
-import java.util.HashMap;
-import java.util.logging.Logger;
-
 import com.transficc.client.library.publiclayer.Side;
 import com.transficc.client.library.publiclayer.reports.MarketDataUpdate;
 
-// A collection of POJOs used for sending and recving messages to the Python SocketServer
+/*  A collection of POJOs used on the message Q that connects the
+    transficc thread and the socket push thread. The transficc thread
+    is running the TFClient code, and the socket push is in WebSockPusher.
+  */
 public class JSON {
 
-    private static Logger logr = Logger.getLogger("com.spreadserve.dbconn.JSON");
+    private static Logger logr = LoggerFactory.getLogger( JSON.class);
 
     private HashMap<String,Class> typeMap;
     private Gson gson;

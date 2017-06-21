@@ -11,8 +11,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.logging.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.google.gson.Gson;
 import com.transficc.sample.outbound.TransficcService;
@@ -24,7 +24,7 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 
 class WebSockPusher implements Callable<String>
 {
-    private static Logger logr = Logger.getLogger("com.transficc.sample.xl.WebSockPusher");
+    private static Logger logr = LoggerFactory.getLogger( WebSockPusher.class);
     private static WebSockPusher instance = null;
 
     private static final AtomicBoolean keepRunning = new AtomicBoolean(true);
@@ -95,7 +95,7 @@ class WebSockPusher implements Callable<String>
     private void onMarketDataUpdate( JSON.MarketDataUpdateMessage upd)
     {
         if ( !instructionIdSubMap.containsKey( upd.instructionId)) {
-            logr.warning( "WebSockPusher.onMarketDataUpdate: unknown instructionId: " + upd.instructionId);
+            logr.warn( "WebSockPusher.onMarketDataUpdate: unknown instructionId: " + upd.instructionId);
             return;
         }
         // Send the update to all subscribers...
@@ -117,7 +117,7 @@ class WebSockPusher implements Callable<String>
     private void onVenueSessionId( JSON.VenueSessionIdMessage sid)
     {
         if ( !venueInstructionIdMap.containsKey( sid.instructionId)) {
-            logr.warning( "WebSockPusher.onVenueSessionId: unknown instructionId: " + sid.instructionId);
+            logr.warn( "WebSockPusher.onVenueSessionId: unknown instructionId: " + sid.instructionId);
             return;
         }
         String ecn = venueInstructionIdMap.get( sid.instructionId);

@@ -1,18 +1,18 @@
 package com.spreadserve.tfwebsock;
 
-import com.google.gson.Gson;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelHandlerContext;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.logging.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import com.google.gson.Gson;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandlerContext;
 
 public class SubscriptionHandler implements WebSocketMessageHandler {
 
 
-    private static Logger logr = Logger.getLogger("com.transficc.sample.xl.StockTickerMessageHandler");
+    private static Logger logr = LoggerFactory.getLogger( SubscriptionHandler.class);
 
     // stateless JSON serializer/deserializer
     private Gson gson = new Gson();

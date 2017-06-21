@@ -1,9 +1,6 @@
 package com.spreadserve.tfwebsock;
 
-
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-
 import com.transficc.client.library.publiclayer.Environment;
 import com.transficc.client.library.publiclayer.LogonStatus;
 import com.transficc.client.library.publiclayer.OrderStatus;
@@ -22,7 +19,6 @@ import com.transficc.client.library.publiclayer.reports.RequestForQuote;
 import com.transficc.client.library.publiclayer.reports.StatusUpdateReport;
 import com.transficc.client.library.publiclayer.reports.TradeUpdateReport;
 import com.transficc.client.library.transport.inbound.VenueLogoutStatus;
-import com.transficc.sample.Credentials;
 import com.transficc.sample.inbound.StreamingNotifications;
 import com.transficc.sample.outbound.TransficcService;
 import com.transficc.sample.service.ServiceFactory;
@@ -30,16 +26,14 @@ import com.transficc.sample.util.InstructionIdGenerator;
 import java.util.Properties;
 import java.util.concurrent.Callable;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.transficc.sample.service.ServiceFactory.TransficcNotificationsFactory;
 
 
 class TFClient implements Callable<String> {
-    private static Logger logr = Logger.getLogger("com.transficc.sample.xl.TFClient");
+    private static Logger logr = LoggerFactory.getLogger( TFClient.class);
     private static String LE_LON_INSTR_ID;
     private static String I_SWAP_LOGON_INSTRUCTION_ID;
 
@@ -173,7 +167,7 @@ class TFClient implements Callable<String> {
         @Override
         public void onInstructionUpdate(final long venueSessionId, final InstructionUpdate instructionUpdate)
         {
-            logr.warning( "VenueNotificationsHandler.onInstructionUpdate: sessionId(" + venueSessionId
+            logr.info( "VenueNotificationsHandler.onInstructionUpdate: sessionId(" + venueSessionId
                           + ") " + instructionUpdate.toString( ));
         }
 

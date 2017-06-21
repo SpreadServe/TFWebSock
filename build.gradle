@@ -5,6 +5,19 @@ apply plugin: 'java'
 
 defaultTasks 'build'
 
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+        	'Implementation-Version': 1.0,
+        	'Main-Class': 'com.spreadserve.tfwebsock.ServerMain'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+
 repositories {
     jcenter( )
     mavenCentral( )
@@ -13,9 +26,18 @@ repositories {
 dependencies {
     compile files("$rootDir/../sample-java-client/build/libs/transficc-sample-java-client.jar")
     compile files("$rootDir/../client-library/build/libs/transficc-client-library-SNAPSHOT.jar")
+    compile files("$rootDir/../client-library/clock/build/libs/clock-SNAPSHOT.jar")
+    compile files("$rootDir/../client-library/protocol/build/libs/client-protocol-SNAPSHOT.jar")
+    compile files("$rootDir/../client-library/socketlibrary/build/libs/socket-library-SNAPSHOT.jar")
+    compile files("$rootDir/../client-library/threading/build/libs/threading-SNAPSHOT.jar")
+    compile files("$rootDir/../client-library/util/build/libs/transficc-util-SNAPSHOT.jar")    
     compile 'io.netty:netty-all:4.0.24.Final'
-    compile 'org.slf4j:slf4j-simple:1.7.21'
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile 'ch.qos.logback:logback-classic:1.0.13'
+    compile 'ch.qos.logback:logback-core:1.0.13'    
     compile 'com.google.code.gson:gson:2.7'
-    compile 'com.google.guava:guava:18.0'    
-    runtime 'org.agrona:agrona:0.9.3'
+    compile 'com.google.guava:guava:18.0'
+    compile 'com.lmax:disruptor-proxy:2.0.7'
+    compile 'com.lmax:disruptor:3.3.6'
+    compile 'org.agrona:agrona:0.9.3'
 }

@@ -2,10 +2,6 @@ package com.spreadserve.tfwebsock;
 
 import java.util.Properties;
 import java.util.concurrent.LinkedBlockingQueue;
-
-import com.transficc.sample.outbound.TransficcService;
-
-
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.FullHttpRequest;
