@@ -1,6 +1,7 @@
 package com.spreadserve.tfwebsock;
 
 import com.google.gson.Gson;
+import com.transficc.client.library.pooling.PooledCharSequence;
 import com.transficc.client.library.publiclayer.Environment;
 import com.transficc.client.library.publiclayer.LogonStatus;
 import com.transficc.client.library.publiclayer.OrderStatus;
@@ -11,7 +12,7 @@ import com.transficc.client.library.publiclayer.Venue;
 import com.transficc.client.library.publiclayer.VenueLogonStatus;
 import com.transficc.client.library.publiclayer.VenueNotificationsCallback;
 import com.transficc.client.library.publiclayer.VenueType;
-import com.transficc.client.library.publiclayer.instructions.LastLookInstruction;
+import com.transficc.client.library.publiclayer.reports.LastLookNotification;
 import com.transficc.client.library.publiclayer.reports.InstructionUpdate;
 import com.transficc.client.library.publiclayer.reports.MarketDataUpdate;
 import com.transficc.client.library.publiclayer.reports.RFQTradeUpdateReport;
@@ -138,8 +139,8 @@ class TFClient implements Callable<String> {
             this.outQ = outQ;
         }
 
-        @Override
-        public void onLogon(final CharSequence cInstructionId, final long venueSessionId, final VenueLogonStatus logonStatus)
+        // @Override
+        public void onLogon( PooledCharSequence cInstructionId, long venueSessionId, VenueLogonStatus logonStatus)
         {
             String instructionId = cInstructionId.toString( );
             logr.info( "VenueNotificationsHandler.onLogon: LogonStatus(" + logonStatus + ") sessionId("
@@ -182,7 +183,7 @@ class TFClient implements Callable<String> {
         }
 
         @Override
-        public void onLastLookInstruction(final long venueSessionId, final LastLookInstruction lastLookInstruction)
+        public void onLastLook( long venueSessionId, LastLookNotification lln)
         {
         }
 
@@ -212,11 +213,11 @@ class TFClient implements Callable<String> {
         }
 
         @Override
-        public void onEndOfRFQNegotiation(long venueSessionId, CharSequence venueAssignedId, RFQTradingStatus status)
+        public void onEndOfRFQNegotiation(long venueSessionId, PooledCharSequence venueAssignedId, RFQTradingStatus status)
         {}
 
         @Override
-        public void onOrderStatus(long venueSessionId, CharSequence instructionId, OrderStatus orderStatus)
+        public void onOrderStatus(long venueSessionId, PooledCharSequence instructionId, OrderStatus orderStatus)
         {}
     }
 

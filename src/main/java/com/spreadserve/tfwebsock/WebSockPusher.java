@@ -72,6 +72,7 @@ class WebSockPusher implements Callable<String>
         while (keepRunning.get())
         {
             msg = outQ.take();
+            logr.info( "WebSockPusher.call: MessageType(" + msg.MessageType + ") " + msg.toString());
             if (msg.MessageType.equals( "MarketDataUpdateMessage"))
             {
                 onMarketDataUpdate((JSON.MarketDataUpdateMessage)msg);
@@ -116,13 +117,13 @@ class WebSockPusher implements Callable<String>
 
     private void onVenueSessionId( JSON.VenueSessionIdMessage sid)
     {
+        String ecn = venueInstructionIdMap.get( sid.instructionId);
+        logr.info( "WebSockPusher.onVenueSessionId: ecn(" + ecn + ") instructionId("
+                   + sid.instructionId + ") sid.sessionId(" + sid.sessionId + ")");
         if ( !venueInstructionIdMap.containsKey( sid.instructionId)) {
             logr.warn( "WebSockPusher.onVenueSessionId: unknown instructionId: " + sid.instructionId);
             return;
         }
-        String ecn = venueInstructionIdMap.get( sid.instructionId);
-        logr.info( "WebSockPusher.onVenueSessionId: ecn(" + ecn + ") instructionId("
-                   + sid.instructionId + ") sid.sessionId(" + sid.sessionId + ")");
         sessionIdMap.put( ecn, sid);
     }
 

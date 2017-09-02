@@ -24,13 +24,14 @@ repositories {
 }
 
 dependencies {
+    compile files("libs/transficc/transficc-client-library-330cb31-3670.jar")
     compile files("$rootDir/../sample-java-client/build/libs/transficc-sample-java-client.jar")
-    compile files("$rootDir/../client-library/build/libs/transficc-client-library-SNAPSHOT.jar")
-    compile files("$rootDir/../client-library/clock/build/libs/clock-SNAPSHOT.jar")
-    compile files("$rootDir/../client-library/protocol/build/libs/client-protocol-SNAPSHOT.jar")
-    compile files("$rootDir/../client-library/socketlibrary/build/libs/socket-library-SNAPSHOT.jar")
-    compile files("$rootDir/../client-library/threading/build/libs/threading-SNAPSHOT.jar")
-    compile files("$rootDir/../client-library/util/build/libs/transficc-util-SNAPSHOT.jar")    
+    // compile files("$rootDir/../client-library/build/libs/transficc-client-library-SNAPSHOT.jar")
+    // compile files("$rootDir/../client-library/clock/build/libs/clock-SNAPSHOT.jar")
+    // compile files("$rootDir/../client-library/protocol/build/libs/client-protocol-SNAPSHOT.jar")
+    // compile files("$rootDir/../client-library/socketlibrary/build/libs/socket-library-SNAPSHOT.jar")
+    // compile files("$rootDir/../client-library/threading/build/libs/threading-SNAPSHOT.jar")
+    // compile files("$rootDir/../client-library/util/build/libs/transficc-util-SNAPSHOT.jar")    
     compile 'io.netty:netty-all:4.0.24.Final'
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'ch.qos.logback:logback-classic:1.0.13'
