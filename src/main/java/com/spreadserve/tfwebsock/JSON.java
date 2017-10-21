@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import com.transficc.client.library.publiclayer.Side;
-import com.transficc.client.library.publiclayer.reports.MarketDataUpdate;
+import com.transficc.client.library.publiclayer.types.Side;
+import com.transficc.client.library.publiclayer.inbound.MarketDataUpdate;
 
 /*  A collection of POJOs used on the message Q that connects the
     transficc thread and the socket push thread. The transficc thread

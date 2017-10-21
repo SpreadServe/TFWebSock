@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    compile files("libs/transficc/transficc-client-library-330cb31-3670.jar")
+    compile files("libs/transficc/transficc-client-library-4c5ba0d-3892.jar")
     compile files("$rootDir/../sample-java-client/build/libs/transficc-sample-java-client.jar")
     // compile files("$rootDir/../client-library/build/libs/transficc-client-library-SNAPSHOT.jar")
     // compile files("$rootDir/../client-library/clock/build/libs/clock-SNAPSHOT.jar")

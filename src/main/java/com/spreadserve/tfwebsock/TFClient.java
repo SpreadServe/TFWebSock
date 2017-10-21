@@ -3,22 +3,21 @@ package com.spreadserve.tfwebsock;
 import com.google.gson.Gson;
 import com.transficc.client.library.pooling.PooledCharSequence;
 import com.transficc.client.library.publiclayer.Environment;
-import com.transficc.client.library.publiclayer.LogonStatus;
-import com.transficc.client.library.publiclayer.OrderStatus;
-import com.transficc.client.library.publiclayer.RFQTradingStatus;
-import com.transficc.client.library.publiclayer.Side;
+import com.transficc.client.library.publiclayer.types.LogonStatus;
+import com.transficc.client.library.publiclayer.types.OrderStatus;
+import com.transficc.client.library.publiclayer.types.RFQTradingStatus;
+import com.transficc.client.library.publiclayer.types.Side;
 import com.transficc.client.library.publiclayer.TransficcCallback;
-import com.transficc.client.library.publiclayer.Venue;
-import com.transficc.client.library.publiclayer.VenueLogonStatus;
+import com.transficc.client.library.publiclayer.types.Venue;
+import com.transficc.client.library.publiclayer.types.VenueLogonStatus;
 import com.transficc.client.library.publiclayer.VenueNotificationsCallback;
-import com.transficc.client.library.publiclayer.VenueType;
-import com.transficc.client.library.publiclayer.reports.LastLookNotification;
-import com.transficc.client.library.publiclayer.reports.InstructionUpdate;
-import com.transficc.client.library.publiclayer.reports.MarketDataUpdate;
-import com.transficc.client.library.publiclayer.reports.RFQTradeUpdateReport;
-import com.transficc.client.library.publiclayer.reports.RequestForQuote;
-import com.transficc.client.library.publiclayer.reports.StatusUpdateReport;
-import com.transficc.client.library.publiclayer.reports.TradeUpdateReport;
+import com.transficc.client.library.publiclayer.inbound.LastLookNotification;
+import com.transficc.client.library.publiclayer.inbound.InstructionUpdate;
+import com.transficc.client.library.publiclayer.inbound.MarketDataUpdate;
+import com.transficc.client.library.publiclayer.inbound.RFQTradeUpdateReport;
+import com.transficc.client.library.publiclayer.inbound.RequestForQuote;
+import com.transficc.client.library.publiclayer.inbound.StatusUpdateReport;
+import com.transficc.client.library.publiclayer.inbound.TradeUpdateReport;
 import com.transficc.client.library.transport.inbound.VenueLogoutStatus;
 import com.transficc.sample.inbound.StreamingNotifications;
 import com.transficc.sample.outbound.TransficcService;
@@ -118,8 +117,12 @@ class TFClient implements Callable<String> {
             String iswapPassword = props.getProperty( "IswapPassword");
             logr.info( "TFClient.onLogon: TransFICC LogonStatus(" + logonStatus + ") logging on to Iswap as user("
                                                 + iswapUserId + ") with instructionId(" + iswapInstructionId + ")");
-            service.venueLogon(iswapInstructionId, Venue.ISWAP, VenueType.MARKET_DATA, iswapUserId, iswapPassword);
+            service.venueLogon(iswapInstructionId, Venue.ISWAP, iswapUserId, iswapPassword);
         }
+
+        @Override
+        public void onLogout( )
+        { }
     }
 
     private static final class VenueNotificationsHandler implements VenueNotificationsCallback
